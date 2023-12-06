@@ -3,13 +3,11 @@ const Voting = require("../model/voteModal");
 const votingPage = async (req, res, next) => {
   try {
     const user = req.user;
-    console.log(user);
     const vote = req.body.name;
     if (!vote) {
       throw new Error("Please select candidate");
     }
     const votedUser = await Voting.findOne({ uservote: user.id });
-    console.log(votedUser);
     if (votedUser) {
       throw new Error("user already voted");
     }
